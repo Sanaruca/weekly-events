@@ -559,20 +559,6 @@
         </tr>
       </tbody>
     </table>
-    <script>
-      // const $table = document.getElementById("main-table")
-      function organisateTableRow({nextElementSibling:nextTr}, number){
-        // debugger;
-        let a = nextTr
-        for (let count = 1; count < number; count++) {
-          const element = a.lastElementChild;
-          element.remove()
-          a = a.nextElementSibling
-          // elementTd.lastElementChild.remove()
-
-        }
-      }
-    </script>
     <script src="setDragables.js"></script>
     <script src="index.js"></script>
     

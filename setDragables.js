@@ -2,6 +2,7 @@ const dragableTimeContainers = document.querySelectorAll(
     ".dragable-content.time-td"
   ),
   dragableTimeObjs = [];
+  
 // table subjects
 const dragableSubjectContainers = document.querySelectorAll(
     ".dragable-content.subject-td"
@@ -14,28 +15,12 @@ dragableTimeContainers.forEach((element) => {
       group: {
         name: "subjects",
       },
-      onChoose: function ({target, item}){
-        console.log(target.rowSpan)
-        item.style.height = item.offsetHeight+"px"
-        item.dataset.rowSpan = target.rowSpan;
-        target.rowSpan = 1
-      },
-      onUnchoose: function ({target, item}){
-
-        // item.style.height = "";
-        item.removeAttribute("style")
-        // item.dataset.rowSpan = target.rowSpan;
-        // target.rowSpan = 1
-      },
-      onMove: function ({to, dragged:item}) {
-        // target.rowSpan
-        // console.log(to.rowSpan)
-        // console.log(item.dataset.rowSpan)
-        
+      // events:
+      onMove: function ({ to, dragged: item }) {
         if (to.childElementCount) return false;
       },
       onAdd: function ({ item, to }) {
-        to.rowSpan = item.dataset.rowSpan
+        to.rowSpan = item.dataset.rowSpan;
         const resizer = item.firstElementChild;
 
         if (resizer.classList.contains("hidden")) {
@@ -48,12 +33,12 @@ dragableTimeContainers.forEach((element) => {
         }
 
         ////////////////////
-        function toggleSortable({target}) {
+        function toggleSortable({ target }) {
           const { parentElement: subjectItem } = target,
-            {parentElement: dragableContent} = subjectItem;
+            { parentElement: dragableContent } = subjectItem;
 
           const index = dragableTimeObjs.findIndex(
-            ({ el }) => el === dragableContent
+              ({ el }) => el === dragableContent
             ),
             sortableObj = dragableTimeObjs[index];
           sortableObj.options.disabled = !sortableObj.options.disabled;
