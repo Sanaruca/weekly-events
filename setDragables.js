@@ -2,12 +2,22 @@ const dragableTimeContainers = document.querySelectorAll(
     ".dragable-content.time-td"
   ),
   dragableTimeObjs = [];
-  
+
 // table subjects
 const dragableSubjectContainers = document.querySelectorAll(
     ".dragable-content.subject-td"
   ),
   dragableSubjectObjs = [];
+
+const tableColumns = [
+  [...document.querySelectorAll("td[data-of-week-column='sunday']")],
+  [...document.querySelectorAll("td[data-of-week-column='monday']")],
+  [...document.querySelectorAll("td[data-of-week-column='tuesday']")],
+  [...document.querySelectorAll("td[data-of-week-column='wednesday']")],
+  [...document.querySelectorAll("td[data-of-week-column='thursday']")],
+  [...document.querySelectorAll("td[data-of-week-column='friday']")],
+  [...document.querySelectorAll("td[data-of-week-column='saturday']")]
+];
 
 dragableTimeContainers.forEach((element) => {
   dragableTimeObjs.push(
@@ -20,16 +30,16 @@ dragableTimeContainers.forEach((element) => {
         if (to.childElementCount) return false;
       },
       onAdd: function ({ item, to }) {
-        to.rowSpan = item.dataset.rowSpan;
+        // to.rowSpan = item.dataset.rowSpan;
         const resizer = item.firstElementChild;
 
         if (resizer.classList.contains("hidden")) {
           resizer.classList.remove("hidden");
 
-          resizer.addEventListener("mousedown", onMouseDown);
+          resizer.addEventListener("mousedown", onMouseDown, false);
 
-          resizer.addEventListener("mouseover", toggleSortable);
-          resizer.addEventListener("mouseout", toggleSortable);
+          resizer.addEventListener("mouseover", toggleSortable, false);
+          resizer.addEventListener("mouseout", toggleSortable, false);
         }
 
         ////////////////////
