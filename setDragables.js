@@ -32,8 +32,10 @@ dragableTimeContainers.forEach((element) => {
       onAdd: function ({ item, to }) {
         // to.rowSpan = item.dataset.rowSpan;
         const resizer = item.firstElementChild;
+        item.classList.add("dragable-item");
 
         if (resizer.classList.contains("hidden")) {
+          //? is it necessary?
           resizer.classList.remove("hidden");
 
           resizer.addEventListener("mousedown", onMouseDown, false);
